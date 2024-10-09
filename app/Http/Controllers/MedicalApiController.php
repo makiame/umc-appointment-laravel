@@ -39,9 +39,9 @@ class MedicalApiController extends Controller
         $validated = $request->validated();
 
         $result = $this->medicalApiService->getSchedule(
-            $validated['daysCount'] ?? null,
-            $validated['clinicUid'] ?? null,
-            $validated['employeeUids'] ?? null,
+            $validated['daysCount'] ?? 14,
+            $validated['clinicUid'] ?? '',
+            $validated['employeeUids'] ?? [],
             $validated['startDate'] ?  \DateTime::createFromFormat("d.m.Y", $validated['startDate']) : null
         );
 
@@ -70,7 +70,11 @@ class MedicalApiController extends Controller
 
     public function createOrder(CreateOrderRequest $request): \Illuminate\Http\JsonResponse
     {
+
+
         $orderData = $request->validated();
+        $orderData['DoctorCode'] = $orderData['code'];
+
         $services = [];
         foreach ($orderData['services'] as $service) {
             array_push($services, $service['uid']);

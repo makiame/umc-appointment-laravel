@@ -113,7 +113,9 @@ class MedicalApiService
             ->setComment($orderData['comment'] ?? '')
             ->setServices($orderData['services'] ?? [])
             ->setOrderUid($orderData['orderUid'] ?? '')
+            ->setDoctorCode($orderData['DoctorCode'])
             ->build();
+
 
         $result = $this->exchangeService->sendOrder($order);
         return $this->formatResult($result);

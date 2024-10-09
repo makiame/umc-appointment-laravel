@@ -36,7 +36,8 @@ class CreateOrderRequest extends FormRequest
             'clientBirthday'       => ['nullable', 'date_format:d.m.Y'],
             'appointmentDuration'  => ['nullable', 'integer', 'min:0'],
             'orderUid'             => ['nullable', 'string', 'uuid'],
-            'code'                 => ['nullable', 'string', 'max:6']
+            'code'                 => ['nullable', 'string', 'max:6'],
+            'DoctorCode'           => ['nullable', 'string', 'max:6']
         ];
     }
 
@@ -68,6 +69,8 @@ class CreateOrderRequest extends FormRequest
             'appointmentDuration.min' => 'Параметр appointmentDuration должен быть больше или равен 0.',
             'orderUid.uuid' => 'Параметр orderUid должен быть валидным UUID.',
             'code.max' => 'Параметр code должен быть не больше 6 символов',
+            'DoctorCode.max' => 'Параметр code должен быть не больше 6 символов',
+
         ];
     }
 }
