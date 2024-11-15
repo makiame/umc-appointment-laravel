@@ -33,7 +33,7 @@ class CreateOrderRequest extends FormRequest
             'clinicUid'            => ['required', 'string', 'uuid'],
             'comment'              => ['nullable', 'string', 'max:500'],
             'services'             => ['nullable', 'array'],
-            'clientBirthday'       => ['nullable', 'date_format:d.m.Y'],
+            'clientBirthday'       => ['nullable', 'date_format:d/m/Y'],
             'appointmentDuration'  => ['nullable', 'integer', 'min:0'],
             'orderUid'             => ['nullable', 'string', 'uuid'],
             'code'                 => ['nullable', 'string', 'max:6'],

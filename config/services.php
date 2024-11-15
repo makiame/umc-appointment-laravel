@@ -31,4 +31,15 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'sms' => [
+        'api_id' => env('SMS_API_ID'),
+    ],
+
+    'medical' => [
+        'username' => env('UMC_USERNAME'),
+        'password' => env('UMC_PASSWORD'),
+        'base_name' => env('UMC_BASE_NAME'),
+        'address' => env('UMC_ADDRESS'),
+        'ssl' => env('UMC_HTTPS')
+    ]
 ];

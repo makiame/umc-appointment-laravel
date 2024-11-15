@@ -80,6 +80,8 @@ class MedicalApiController extends Controller
             array_push($services, $service['uid']);
         }
         $orderData['services'] = $services;
+        $orderData['clientBirthday'] = \DateTime::createFromFormat("d/m/Y", $orderData['clientBirthday']);
+
         $result = $this->medicalApiService->createOrder($orderData);
         return $this->handleResponse($result);
     }
@@ -101,5 +103,8 @@ class MedicalApiController extends Controller
             return response()->json(['error' => $result['message']], 400);
         }
     }
+
+
+
 }
 

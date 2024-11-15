@@ -29,4 +29,6 @@ Route::prefix('medical')->group(function () {
     Route::post('/reserve', [MedicalApiController::class, 'reserveTime']);
     Route::post('/order', [MedicalApiController::class, 'createOrder']);
     Route::delete('/order/{orderUid}', [MedicalApiController::class, 'deleteOrder']);
+    Route::post('sms-confirmation', [\App\Http\Controllers\SmsController::class, 'sendCode']);
+    Route::post('sms-confirmation/verify', [\App\Http\Controllers\SmsController::class, 'verifySms']);
 });

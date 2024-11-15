@@ -20,12 +20,13 @@ class MedicalApiService
     private function init(): Soap
     {
         try {
+
             $client = Builder\ExchangeClient::init()
-                ->setLogin(env('UMC_USERNAME', ''))
-                ->setPassword(env('UMC_PASSWORD', ''))
-                ->setPublicationProtocol(env('UMC_PROTOCOL') === true? Protocol::HTTPS : Protocol::HTTP)
-                ->setPublicationAddress(env('UMC_ADDRESS', ''))
-                ->setBaseName(env('UMC_BASE_NAME', ''))
+                ->setLogin(config('services.medical.username'))
+                ->setPassword(config('services.medical.password'))
+                ->setPublicationProtocol(config('services.medical.ssl')? Protocol::HTTPS : Protocol::HTTP)
+                ->setPublicationAddress(config('services.medical.address'))
+                ->setBaseName(config('services.medical.base_name'))
                 ->setScope(ClientScope::WEB_SERVICE)
                 ->build();
 
@@ -108,12 +109,13 @@ class MedicalApiService
             ->setPhone($orderData['phone'])
             ->setEmail($orderData['email'] ?? '')
             ->setAddress($orderData['address'] ?? '')
+            ->setClientBirthday($orderData['clientBirthday'] ?? '')
             ->setClinicUid($orderData['clinicUid'])
             ->setAppointmentDuration($orderData['appointmentDuration'])
             ->setComment($orderData['comment'] ?? '')
             ->setServices($orderData['services'] ?? [])
             ->setOrderUid($orderData['orderUid'] ?? '')
-            ->setDoctorCode($orderData['DoctorCode'])
+            ->setDoctorCode($orderData['DoctorCode']?? '')
             ->build();
 
 
