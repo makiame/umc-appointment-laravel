@@ -24,12 +24,12 @@ class SmsController extends Controller {
             'code' => $code
         ]);
 
-//        return json_encode(["status" => "OK", "sms" => [
-//            $request->phone => [
-//                'status' => 'OK',
-//                'code' => $code
-//            ]
-//        ]]);
+        return json_encode(["status" => "OK", "sms" => [
+            $request->phone => [
+                'status' => 'OK',
+                'code' => $code
+            ]
+        ]]);
 
         $from = match ($request->domain) {
             'gazpromoptika.ru' => 'GAZoptika',
@@ -40,7 +40,7 @@ class SmsController extends Controller {
 
         $sms = new SmsService(config('services.sms.api_id'));
 
-        $message = "Код для записи в доктору Александру санчоусу $code";
+        $message = "Код для записи к доктору $code";
 
         return $sms->sendSms($request->phone, $message, $from);
 
@@ -64,3 +64,5 @@ class SmsController extends Controller {
     }
 
 }
+
+
